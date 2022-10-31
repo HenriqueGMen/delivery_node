@@ -7,11 +7,11 @@ export class CreateClientController {
 
     const createClientUseCase = new CreateClientUseCase();
 
-    const result = createClientUseCase.execute({
+    const result = await createClientUseCase.execute({
       username,
       password
     });
 
-    return res.json(result);
+    return res.status(201).json(result);
   }
 }
