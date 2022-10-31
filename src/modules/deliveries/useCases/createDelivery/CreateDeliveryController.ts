@@ -2,15 +2,16 @@ import { Request, Response } from 'express';
 import { CreateDeliveryUseCase } from './CreateDeliveryUseCase';
 
 export class CreateDeliveryController {
-  async handle(request: Request, response: Response) {
-    const { item_name, id_client } = request.body;
+  async handle(req: Request, res: Response) {
+    const { item_name } = req.body;
+    const { id_client } = req;
     const createDeliveryUseCase = new CreateDeliveryUseCase();
 
     const delivery = await createDeliveryUseCase.execute({
       id_client,
       item_name,
     });
-
-    return response.json(delivery);
+ 
+    return res.json(delivery);
   }
 }
